@@ -1,0 +1,4 @@
+window.onload = function() {
+
+//create a new Phaser game, with dimesions of 800px wide and 600px tall
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game world', { preload: preload, create: create, update: update});
