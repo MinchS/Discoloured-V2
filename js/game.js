@@ -14,9 +14,7 @@ window.onload = function() {
   function create(){
 	game.add.sprite(0,0,'player');
 	player.body.collideWorldBounds = true;
-  }
-
-  controls = game.input.keyboard.addKeys(
+        controls = game.input.keyboard.addKeys(
   {
     'jump': Phaser.KeyCode.W,
     'left': Phaser.KeyCode.A,
@@ -28,4 +26,4 @@ window.onload = function() {
   function update(){
 
   }
-};
+}; //end of program
