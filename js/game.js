@@ -6,7 +6,8 @@ window.onload = function() {
 //Preload function, where we can load all the assets that will be used
   function preload(){
 	  game.load.spritesheet('player', 'assets/character.png', 25, 36);
-
+	  game.load.image('background', 'assets/background.png');
+ 
   }
 
 //Create function, where all the initial objects are created
