@@ -13,6 +13,7 @@ window.onload = function() {
 //Create function, where all the initial objects are created
   function create(){
 	game.add.sprite(0,0,'player');
+	player.body.collideWorldBounds = true;
   }
 
   controls = game.input.keyboard.addKeys(
