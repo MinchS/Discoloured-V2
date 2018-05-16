@@ -15,6 +15,14 @@ window.onload = function() {
 	game.add.sprite(0,0,'player');
   }
 
+   controls = game.input.keyboard.addKeys(
+			{
+	'jump': Phaser.KeyCode.W,
+	'crouch': Phaser.KeyCode.S,
+	'moveBackwards': Phaser.KeyCode.A,
+	'moveForwards': Phaser.KeyCode.D,
+			}
+		);
 //Update function, runs every frame
   function update(){
 
