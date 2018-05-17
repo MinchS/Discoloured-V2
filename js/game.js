@@ -24,6 +24,23 @@ window.onload = function() {
 );
 //Update function, runs every frame
   function update(){
-
+	  
+if(controls.left.isDown){
+    player.body.velocity.x = -150;
+    player.animations.play('left');
   }
+  else if(controls.right.isDown){
+    player.body.velocity.x = 150;
+    player.animations.play('right');
+  } else {
+    player.animations.stop();
+    player.frame = 4;
+    player.body.velocity.x = 0;
+  }
+
+  if(controls.jump.isDown && player.body.touching.down && hittingPlatform) {
+    player.body.velocity.y = -350;
+  }
+} //end of update
+
 }; //end of program
