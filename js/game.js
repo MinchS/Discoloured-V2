@@ -5,6 +5,21 @@ window.onload = function() {
   
   var bg1c, bg2c;
   var bg1bw, bg2bw;
+  var gameState = 0; //Game is starting
+  var level = 1;  //Current game level
+  var button; //The menu button
+  var environmentGroup; //Group for all world objects such as platforms and background
+  var playerGroup;  //Group for the player and and player info elements
+
+  var platforms;  //Group of platforms
+
+  //Player gobal variables
+  var player; //The player object
+  var speed = 10;  //The speed the player moves at
+  var MAX_SPEED = 300;  //The maximum speed of the player
+  var jumpForce = 350;  //The force that the player will jump with
+  var controls; //The controls for the player
+
 //Preload function, where we can load all the assets that will be used
   function preload(){
 	  game.load.spritesheet('player', 'assets/character.png', 25, 36);
