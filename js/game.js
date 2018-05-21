@@ -39,6 +39,15 @@ window.onload = function() {
 		game.physics.arcade.enable(bg2);
 		bg2c.body.velocity.x = -20;
 	  
+    environmentGroup = game.add.group();
+    playerGroup = game.add.group();
+	  
+	  //load the menu
+	    loadMenu();
+	  
+	    //Enable the Arcade physics system
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+	  
 	game.add.sprite(0,0,'player');
 	player.body.collideWorldBounds = true;
         controls = game.input.keyboard.addKeys(
@@ -51,6 +60,14 @@ window.onload = function() {
 );
 //Update function, runs every frame
   function update(){
+	  
+ if(gameState == 0) {  //Game menu code
+      //Animate the player moving across the bottom of the screen
+      player.x++; //Move the player right
+      if (player.x > game.world.width) {  //If the player has moved off the right edge of the screen
+        player.x = -48; //Place the player just to the left of the screen
+      }
+    } else if(gameState == 1) {  //Game code
 	  
 if(controls.left.isDown){
     player.body.velocity.x = -150;
@@ -76,5 +93,29 @@ if(controls.left.isDown){
      bg2.x = game.width;} 
   }
 } //end of update
+	    
+	      function loadMenu(){
+    bg = game.add.sprite(0,0,'menu');
+    environmentGroup.add(bg);  //Add the bg to the environmentGroup
+
+    //Add a play button
+    button = game.add.button(game.world.centerX, game.world.centerY, 'button');
+    button.anchor.setTo(0.5,0.5);
+    button.onInputUp.add(actionPlay); //When the button is released
+    environmentGroup.add(button);
+
+    //Place some text on top of the button
+    var text = game.add.text(button.x,button.y,'Play');
+    text.anchor.setTo(0.5,0.5);
+    environmentGroup.add(text);
+
+    //Do some initial player set up
+    player = game.add.sprite(-48, game.world.height-125, 'player');
+    //Add animation sequences to the player object
+    player.animations.add('left', [0,1,2,3], 10, true);
+    player.animations.add('right', [5,6,7,8], 10, true);
+    player.animations.play('right');  //Start playing the 'right' animation
+    playerGroup.add(player);  //Add the player to the player group
+  } //end of loadMenu
 
 }; //end of program
