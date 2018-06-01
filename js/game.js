@@ -30,7 +30,8 @@ window.onload = function() {
     game.load.image('button', 'assets/button.png'); //Start button
     game.load.image('menu', 'assets/menu.png'); //Menu background
     game.load.image('rock', 'assets/rock.png'); //rock
-    game.load.audio('music', ['assets/sounds/music.mp3' , 'assets/sounds/music.ogg']); //background music
+    game.load.audio('music', ['assets/sounds/bossfight.mp3' , 'assets/sounds/bossfight.ogg']); //finalboss music
+    game.load.audio('music', ['assets/sounds/treebossfight.mp3' , 'assets/sounds/treebossfight.ogg']); //treeboss music
   } //END of preload
 
 //Create function, where all the initial objects are created
