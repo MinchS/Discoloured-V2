@@ -25,9 +25,14 @@ window.onload = function() {
 
 //Preload function, where we can load all the assets that will be used
   function preload(){
+<<<<<<< HEAD
 	  game.load.spritesheet('player', 'assets/Character.png', 96, 128); //Player sprite
     game.load.spritesheet('MenuP', 'assets/Character.png', 96, 128);
     game.load.image('bg', 'assets/bg1.1colour.png');    //background with colour
+=======
+	  game.load.spritesheet('player', 'assets/Character.png', 25, 36); //Player sprite
+    game.load.image('bg1.1colour', 'assets/bg1.1colour.png');    //background with colour
+>>>>>>> 556e3bc26e52d4a9b1548908881eea744ef17ffd
     game.load.image('button', 'assets/button.png'); //Start button
     game.load.image('menu', 'assets/menu.png'); //Menu background
     game.load.image('rock', 'assets/rock.png'); //rock
