@@ -25,8 +25,9 @@ window.onload = function() {
 
 //Preload function, where we can load all the assets that will be used
   function preload(){
-	  game.load.spritesheet('player', 'assets/Character.png', 25, 36); //Player sprite
-    game.load.image('bg', 'assets/background1colour.png');    //background with colour
+	  game.load.spritesheet('player', 'assets/Character.png', 96, 128); //Player sprite
+    game.load.spritesheet('MenuP', 'assets/Character.png', 96, 128);
+    game.load.image('bg', 'assets/bg1.1colour.png');    //background with colour
     game.load.image('button', 'assets/button.png'); //Start button
     game.load.image('menu', 'assets/menu.png'); //Menu background
     game.load.image('rock', 'assets/rock.png'); //rock
@@ -58,13 +59,13 @@ window.onload = function() {
     'jump': Phaser.KeyCode.W,
     'left': Phaser.KeyCode.A,
     'right': Phaser.KeyCode.D,
-    'crouch': Phaser.KeyCode.S
+    'crouch': Phaser.KeyCode.S,
     'pause': Phaser.KeyCode.SPACEBAR
   }
 );
-player.animations.add('left', [0,1,2], 10, true);
+player.animations.add('left', [0,1,2,3], 8, true);
 //player.animations.add('right', [5,6,7,8], 10, true
-player.animations.add('right', [4,5,6], 10, true);
+player.animations.add('right', [4,5,6,7], 8, true);
 } //END of create
 
 //Update function, runs every frame
@@ -72,9 +73,9 @@ player.animations.add('right', [4,5,6], 10, true);
 
  if(gameState == 0) {  //Game menu code
       //Animate the player moving across the bottom of the screen
-      player.x++; //Move the player right
-      if (player.x > game.world.width) {  //If the player has moved off the right edge of the screen
-        player.x = -48; //Place the player just to the left of the screen
+      MenuP.x++; //Move the player right
+      if (MenuP.x > game.world.width) {  //If the player has moved off the right edge of the screen
+        MenuP.x = -48; //Place the player just to the left of the screen
       }
     } else if(gameState == 1) {  //Game code
 
@@ -128,13 +129,18 @@ if(controls.left.isDown){
     text.anchor.setTo(0.5,0.5);
     environmentGroup.add(text);
 
+//note this is a test sprite (Do not remove or use)
+    //temp = game.add.sprite(50,50,'player');
+    //temp.animations.add('left', [1,2,3,4,5,6,7], 5, true);
+    //temp.animations.play('left');
+
     //Do some initial player set up
-    player = game.add.sprite(-48, game.world.height-125, 'player');
+    MenuP = game.add.sprite(-48, game.world.height-125, 'player');
     //player.body.collideWorldBounds = true;
     //Add animation sequences to the player object
-    player.animations.add('right', [4,5,6], 10, true);
-    player.animations.play('right');  //Start playing the 'right' animation
-    playerGroup.add(player);  //Add the player to the player group
+    MenuP.animations.add('right', [4,5,6,7], 5, true);
+    MenuP.animations.play('right');  //Start playing the 'right' animation
+    MenuPGroup.add(MenuP);  //Add the player to the player group
   } //end of loadMenu
 
   function loadLevelOne(){
