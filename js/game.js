@@ -59,9 +59,7 @@ window.onload = function() {
     'pause': Phaser.KeyCode.SPACEBAR
   }
 );
-//player.animations.add('left', [0,1,2,3], 8, true);
-//player.animations.add('right', [5,6,7,8], 10, true
-//player.animations.add('right', [4,5,6,7], 8, true);
+
 } //END of create
 
 //Update function, runs every frame
@@ -152,12 +150,17 @@ if(controls.left.isDown){
 		game.physics.arcade.enable(bg2c);
 		bg2c.body.velocity.x = -20;
 
+    player = game.add.sprite(0, game.world.height-125, 'player');
     player.x = 50;
     game.physics.enable(player);
+    playerGroup.add(player);
+    player.animations.add('left', [0,1,2,3], 8, true);
+    player.animations.add('right', [4,5,6,7], 8, true);
   }
 
   function unloadLevel(){
     environmentGroup.removeAll(true);
+    MenuPGroup.removeAll(true);
   }
 
   function actionPlay(){
