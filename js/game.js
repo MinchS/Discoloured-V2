@@ -13,6 +13,7 @@ window.onload = function() {
   var playerGroup;  //Group for the player and and player info elements
   var bg1
   var platforms;  //Group of platforms
+  var MenuPGroup;
 
   //Player gobal variables
   var player; //The player object
@@ -29,11 +30,10 @@ window.onload = function() {
     game.load.spritesheet('MenuP', 'assets/Character.png', 96, 128);
 	  game.load.spritesheet('player', 'assets/Character.png', 25, 36); //Player sprite
     game.load.image('background1', 'assets/bg1.2colour.png');    //background with colour
-    game.load.image('button', 'assets/button.png'); //Start button
+    game.load.image('button', 'assets/button1.png'); //Start button
     game.load.image('menu', 'assets/StartScreen.png'); //Menu background
     game.load.image('rock', 'assets/rock.png'); //rock
-    game.load.audio('music', ['assets/sounds/bossfight.mp3' , 'assets/sounds/bossfight.ogg']); //finalboss music
-    game.load.audio('music', ['assets/sounds/treebossfight.mp3' , 'assets/sounds/treebossfight.ogg']); //treeboss music
+
   } //END of preload
 
 //Create function, where all the initial objects are created
@@ -50,11 +50,6 @@ window.onload = function() {
 	    //Enable the Arcade physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    //Start playing the background music
-    music = game.add.audio('music');
-    music.volume = 0.1;
-    music.play();
-
   controls = game.input.keyboard.addKeys(
   {
     'jump': Phaser.KeyCode.W,
@@ -64,9 +59,9 @@ window.onload = function() {
     'pause': Phaser.KeyCode.SPACEBAR
   }
 );
-player.animations.add('left', [0,1,2,3], 8, true);
+//player.animations.add('left', [0,1,2,3], 8, true);
 //player.animations.add('right', [5,6,7,8], 10, true
-player.animations.add('right', [4,5,6,7], 8, true);
+//player.animations.add('right', [4,5,6,7], 8, true);
 } //END of create
 
 //Update function, runs every frame
@@ -121,12 +116,12 @@ if(controls.left.isDown){
 
     //Add a play button
     button = game.add.button(game.world.centerX, game.world.centerY, 'button');
-    button.anchor.setTo(0.5,0.5);
+    button.anchor.setTo(0.45,-0.725);
     button.onInputUp.add(actionPlay); //When the button is released
     environmentGroup.add(button);
 
     //Place some text on top of the button
-    var text = game.add.text(button.x,button.y,'Play');
+    var text = game.add.text(button.x,button.y);
     text.anchor.setTo(0.5,0.5);
     environmentGroup.add(text);
 
@@ -141,6 +136,7 @@ if(controls.left.isDown){
     //Add animation sequences to the player object
     MenuP.animations.add('right', [4,5,6,7], 5, true);
     MenuP.animations.play('right');  //Start playing the 'right' animation
+    MenuPGroup = game.add.group();
     MenuPGroup.add(MenuP);  //Add the player to the player group
   } //end of loadMenu
 
