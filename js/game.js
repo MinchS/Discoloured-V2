@@ -30,7 +30,7 @@ window.onload = function() {
 	  game.load.spritesheet('player', 'assets/Character.png', 25, 36); //Player sprite
     game.load.image('background1', 'assets/bg1.2colour.png');    //background with colour
     game.load.image('button', 'assets/button.png'); //Start button
-    game.load.image('menu', 'assets/menu.png'); //Menu background
+    game.load.image('menu', 'assets/StartScreen.png'); //Menu background
     game.load.image('rock', 'assets/rock.png'); //rock
     game.load.audio('music', ['assets/sounds/bossfight.mp3' , 'assets/sounds/bossfight.ogg']); //finalboss music
     game.load.audio('music', ['assets/sounds/treebossfight.mp3' , 'assets/sounds/treebossfight.ogg']); //treeboss music
