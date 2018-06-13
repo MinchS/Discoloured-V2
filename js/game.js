@@ -74,15 +74,15 @@ window.onload = function() {
     } else if(gameState == 1) {  //Game code
 
 if(controls.left.isDown){
-    player.body.velocity.x = -150;
+    //player.body.velocity.x = -150;
     player.animations.play('left');
   } else if(controls.right.isDown){
-    player.body.velocity.x = 150;
+    //player.body.velocity.x = 150;
     player.animations.play('right');
   } else {
     player.animations.stop();
     player.frame = 3;
-    player.body.velocity.x = 0;
+    //player.body.velocity.x = 0;
   }
 
   if(controls.jump.isDown && player.body.touching.down && hittingPlatform) {
@@ -140,8 +140,8 @@ if(controls.left.isDown){
 
   function loadLevelOne(){
     gameState = 1;
-    bg1c = game.add.sprite(0,0,'bg');
-	  bg2c = game.add.sprite(game.width,0,'bg');
+    bg1c = game.add.sprite(0,0,'background1')
+    bg2c = game.add.sprite(game.width,0,'background1');
     environmentGroup.add(bg1c);
     environmentGroup.add(bg2c);
 
