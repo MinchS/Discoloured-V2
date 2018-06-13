@@ -33,7 +33,7 @@ window.onload = function() {
     game.load.image('button', 'assets/button1.png'); //Start button
     game.load.image('menu', 'assets/StartScreen.png'); //Menu background
     game.load.image('rock', 'assets/rock.png'); //rock
-
+    game.load.image('ground','assets/dirtground1.png'); //dirt (brown)
   } //END of preload
 
 //Create function, where all the initial objects are created
@@ -43,6 +43,8 @@ window.onload = function() {
     //create groups
 	  environmentGroup = game.add.group();
     playerGroup = game.add.group();
+    platforms = game.add.group();
+    platforms.enableBody = true;
 
 	  //load the menu
 	    loadMenu();
@@ -144,6 +146,9 @@ if(controls.left.isDown){
     bg2c = game.add.sprite(game.width,0,'background1');
     environmentGroup.add(bg1c);
     environmentGroup.add(bg2c);
+
+    var ledge = platforms.create(0, 448, 'ground');
+    ledge.body.immovable = true;
 
     game.physics.arcade.enable(bg1c);
 		bg1c.body.velocity.x = -20;
