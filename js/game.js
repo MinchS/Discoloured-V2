@@ -36,9 +36,18 @@ window.onload = function() {
 	  game.load.spritesheet('player', 'assets/Character.png', 25, 36); //Player sprite
     game.load.image('background1', 'assets/bg1.2colour.png');    //background with colour
     game.load.image('button', 'assets/button1.png'); //Start button
+<<<<<<< HEAD
+    game.load.image('menu', 'assets/StartScreen2.png'); //Menu background
+=======
     game.load.image('menu', 'assets/StartScreen.png'); //Menu background
+<<<<<<< HEAD
+=======
+>>>>>>> e0bc75efd270259f00cb2ca85101621f98b82406
+>>>>>>> 231b2b1f4bae0f8b1d1407f141fa955ecb7650e9
+>>>>>>> 1c6136ca3706142ceef779252459b0778c0df14a
     game.load.image('rock', 'assets/rock.png'); //rock
-
+    game.load.image('ground','assets/dirtground1.png'); //dirt (brown)
+    game.load.image('missile', 'assets/missile.png');
   } //END of preload
 
 //Create function, where all the initial objects are created
@@ -48,6 +57,8 @@ window.onload = function() {
     //create groups
 	  environmentGroup = game.add.group();
     playerGroup = game.add.group();
+    platforms = game.add.group();
+    platforms.enableBody = true;
 
 	  //load the menu
 	    loadMenu();
@@ -79,15 +90,15 @@ window.onload = function() {
     } else if(gameState == 1) {  //Game code
 
 if(controls.left.isDown){
-    player.body.velocity.x = -150;
+    //player.body.velocity.x = -150;
     player.animations.play('left');
   } else if(controls.right.isDown){
-    player.body.velocity.x = 150;
+    //player.body.velocity.x = 150;
     player.animations.play('right');
   } else {
     player.animations.stop();
     player.frame = 3;
-    player.body.velocity.x = 0;
+    //player.body.velocity.x = 0;
   }
 
   if(controls.jump.isDown && player.body.touching.down && hittingPlatform) {
@@ -134,7 +145,7 @@ if(controls.left.isDown){
     //temp.animations.play('left');
 
     //Do some initial player set up
-    MenuP = game.add.sprite(-48, game.world.height-125, 'player');
+    MenuP = game.add.sprite(-48, game.world.height-280, 'player');
     //player.body.collideWorldBounds = true;
     //Add animation sequences to the player object
     MenuP.animations.add('right', [4,5,6,7], 5, true);
@@ -145,22 +156,37 @@ if(controls.left.isDown){
 
   function loadLevelOne(){
     gameState = 1;
-    bg1c = game.add.sprite(0,0,'bg');
-	  bg2c = game.add.sprite(game.width,0,'bg');
+    bg1c = game.add.sprite(0,0,'background1')
+    bg2c = game.add.sprite(game.width,0,'background1');
     environmentGroup.add(bg1c);
     environmentGroup.add(bg2c);
+
+    var ledge = platforms.create(0, 448, 'ground');
+    ledge.body.immovable = true;
 
     game.physics.arcade.enable(bg1c);
 		bg1c.body.velocity.x = -20;
 		game.physics.arcade.enable(bg2c);
 		bg2c.body.velocity.x = -20;
 
-    player = game.add.sprite(0, game.world.height-125, 'player');
+    player = game.add.sprite(0, game.world.height-280, 'player');
     player.x = 50;
     game.physics.enable(player);
     playerGroup.add(player);
     player.animations.add('left', [0,1,2,3], 8, true);
     player.animations.add('right', [4,5,6,7], 8, true);
+
+    weapon = game.add.weapon(5, 'missile');
+    weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
+    weapon.bulletScale = 0.1;     //Scale size of bullets
+    weapon.fireRate = 500;        //Milliseconds between shots
+    weapon.trackSprite(player);
+
+
+    if (game.input.activePointer.leftButton.isDown) {
+		weapon.fireAtPointer();
+  }
+
   }
 
   function unloadLevel(){
