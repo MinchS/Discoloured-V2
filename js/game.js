@@ -31,9 +31,10 @@ window.onload = function() {
 	  game.load.spritesheet('player', 'assets/Character.png', 25, 36); //Player sprite
     game.load.image('background1', 'assets/bg1.2colour.png');    //background with colour
     game.load.image('button', 'assets/button1.png'); //Start button
-    game.load.image('menu', 'assets/StartScreen.png'); //Menu background
+    game.load.image('menu', 'assets/StartScreen2.png'); //Menu background
     game.load.image('rock', 'assets/rock.png'); //rock
     game.load.image('ground','assets/dirtground1.png'); //dirt (brown)
+    game.load.image('missile', 'assets/missile.png');
   } //END of preload
 
 //Create function, where all the initial objects are created
@@ -131,7 +132,7 @@ if(controls.left.isDown){
     //temp.animations.play('left');
 
     //Do some initial player set up
-    MenuP = game.add.sprite(-48, game.world.height-125, 'player');
+    MenuP = game.add.sprite(-48, game.world.height-280, 'player');
     //player.body.collideWorldBounds = true;
     //Add animation sequences to the player object
     MenuP.animations.add('right', [4,5,6,7], 5, true);
@@ -155,12 +156,24 @@ if(controls.left.isDown){
 		game.physics.arcade.enable(bg2c);
 		bg2c.body.velocity.x = -20;
 
-    player = game.add.sprite(0, game.world.height-125, 'player');
+    player = game.add.sprite(0, game.world.height-280, 'player');
     player.x = 50;
     game.physics.enable(player);
     playerGroup.add(player);
     player.animations.add('left', [0,1,2,3], 8, true);
     player.animations.add('right', [4,5,6,7], 8, true);
+
+    weapon = game.add.weapon(5, 'missile');
+    weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
+    weapon.bulletScale = 0.1;     //Scale size of bullets
+    weapon.fireRate = 500;        //Milliseconds between shots
+    weapon.trackSprite(player);
+
+
+    if (game.input.activePointer.leftButton.isDown) {
+		weapon.fireAtPointer();
+  }
+
   }
 
   function unloadLevel(){
