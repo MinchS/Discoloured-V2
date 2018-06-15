@@ -36,15 +36,9 @@ window.onload = function() {
 	  game.load.spritesheet('player', 'assets/Character.png', 25, 36); //Player sprite
     game.load.image('background1', 'assets/bg1.2colour.png');    //background with colour
     game.load.image('button', 'assets/button1.png'); //Start button
-<<<<<<< HEAD
+    game.load.image('Background', 'assets/Full Background BandW.png')
     game.load.image('menu', 'assets/StartScreen2.png'); //Menu background
-=======
     game.load.image('menu', 'assets/StartScreen.png'); //Menu background
-<<<<<<< HEAD
-=======
->>>>>>> e0bc75efd270259f00cb2ca85101621f98b82406
->>>>>>> 231b2b1f4bae0f8b1d1407f141fa955ecb7650e9
->>>>>>> 1c6136ca3706142ceef779252459b0778c0df14a
     game.load.image('rock', 'assets/rock.png'); //rock
     game.load.image('ground','assets/dirtground1.png'); //dirt (brown)
     game.load.image('missile', 'assets/missile.png');
@@ -156,8 +150,8 @@ if(controls.left.isDown){
 
   function loadLevelOne(){
     gameState = 1;
-    bg1c = game.add.sprite(0,0,'background1')
-    bg2c = game.add.sprite(game.width,0,'background1');
+    bg1c = game.add.sprite(0,0,'Background')
+    bg2c = game.add.sprite(game.width,0,'Background');
     environmentGroup.add(bg1c);
     environmentGroup.add(bg2c);
 
